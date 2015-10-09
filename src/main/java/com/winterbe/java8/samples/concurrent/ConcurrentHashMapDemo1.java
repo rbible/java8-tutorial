@@ -6,7 +6,7 @@ import java.util.concurrent.ForkJoinPool;
 /**
  * @author Benjamin Winterberg
  */
-public class ConcurrentHashMap1 {
+public class ConcurrentHashMapDemo1 {
 
     public static void main(String[] args) {
         System.out.println("Parallelism: " + ForkJoinPool.getCommonPoolParallelism());

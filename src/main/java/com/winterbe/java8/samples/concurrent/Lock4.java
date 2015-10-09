@@ -42,5 +42,4 @@ public class Lock4 {
 
         ConcurrentUtils.stop(executor);
     }
-
 }

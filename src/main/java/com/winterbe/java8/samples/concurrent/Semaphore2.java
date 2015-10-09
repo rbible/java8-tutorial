@@ -15,10 +15,7 @@ public class Semaphore2 {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(10);
-
-        IntStream.range(0, 10)
-                .forEach(i -> executor.submit(Semaphore2::doWork));
-
+        IntStream.range(0, 10).forEach(i -> executor.submit(Semaphore2::doWork));
         ConcurrentUtils.stop(executor);
     }
 
@@ -40,5 +37,4 @@ public class Semaphore2 {
             }
         }
     }
-
 }

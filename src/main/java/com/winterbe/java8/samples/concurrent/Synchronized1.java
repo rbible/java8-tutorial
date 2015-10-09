@@ -20,27 +20,17 @@ public class Synchronized1 {
 
     private static void testSyncIncrement() {
         count = 0;
-
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
-        IntStream.range(0, NUM_INCREMENTS)
-                .forEach(i -> executor.submit(Synchronized1::incrementSync));
-
+        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(Synchronized1::incrementSync));
         ConcurrentUtils.stop(executor);
-
         System.out.println("   Sync: " + count);
     }
 
     private static void testNonSyncIncrement() {
         count = 0;
-
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
-        IntStream.range(0, NUM_INCREMENTS)
-                .forEach(i -> executor.submit(Synchronized1::increment));
-
+        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(Synchronized1::increment));
         ConcurrentUtils.stop(executor);
-
         System.out.println("NonSync: " + count);
     }
 
@@ -51,5 +41,4 @@ public class Synchronized1 {
     private static void increment() {
         count = count + 1;
     }
-
 }

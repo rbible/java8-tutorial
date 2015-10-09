@@ -11,7 +11,6 @@ public class Lock2 {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
         ReentrantLock lock = new ReentrantLock();
 
         executor.submit(() -> {
@@ -32,5 +31,4 @@ public class Lock2 {
 
         ConcurrentUtils.stop(executor);
     }
-
 }

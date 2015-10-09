@@ -18,14 +18,9 @@ public class LongAccumulator1 {
     private static void testAccumulate() {
         LongBinaryOperator op = (x, y) -> 2 * x + y;
         LongAccumulator accumulator = new LongAccumulator(op, 1L);
-
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
-        IntStream.range(0, 10)
-                .forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
-
+        IntStream.range(0, 10).forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
         ConcurrentUtils.stop(executor);
-
         System.out.format("Add: %d\n", accumulator.getThenReset());
     }
 }

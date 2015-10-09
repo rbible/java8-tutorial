@@ -14,11 +14,8 @@ public class Lock3 {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
         Map<String, String> map = new HashMap<>();
-
         ReadWriteLock lock = new ReentrantReadWriteLock();
-
         executor.submit(() -> {
             lock.writeLock().lock();
             try {
@@ -43,5 +40,4 @@ public class Lock3 {
 
         ConcurrentUtils.stop(executor);
     }
-
 }

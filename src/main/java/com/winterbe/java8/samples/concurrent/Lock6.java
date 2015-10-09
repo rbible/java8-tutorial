@@ -13,9 +13,7 @@ public class Lock6 {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
         StampedLock lock = new StampedLock();
-
         executor.submit(() -> {
             long stamp = lock.readLock();
             try {
@@ -35,5 +33,4 @@ public class Lock6 {
 
         ConcurrentUtils.stop(executor);
     }
-
 }

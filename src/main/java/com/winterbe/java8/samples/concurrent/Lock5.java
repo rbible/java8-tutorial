@@ -11,7 +11,6 @@ public class Lock5 {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
         StampedLock lock = new StampedLock();
 
         executor.submit(() -> {

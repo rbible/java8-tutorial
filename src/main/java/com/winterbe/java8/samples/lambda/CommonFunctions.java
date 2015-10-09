@@ -16,65 +16,65 @@ import java.util.function.Supplier;
  */
 public class CommonFunctions {
 
-	@FunctionalInterface
-	interface Fun {
-		void foo();
-	}
+    @FunctionalInterface
+    interface Fun {
+        void foo();
+    }
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		// Predicates
-		Predicate<String> predicate = (s) -> s.length() > 0;
+        // Predicates
+        Predicate<String> predicate = (s) -> s.length() > 0;
 
-		predicate.test("foo"); // true
-		predicate.negate().test("foo"); // false
+        predicate.test("foo"); // true
+        predicate.negate().test("foo"); // false
 
-		Predicate<Boolean> nonNull = Objects::nonNull;
-		nonNull.test(null);
+        Predicate<Boolean> nonNull = Objects::nonNull;
+        nonNull.test(null);
 
-		Predicate<Boolean> isNull = Objects::isNull;
-		isNull.test(null);
+        Predicate<Boolean> isNull = Objects::isNull;
+        isNull.test(null);
 
-		Predicate<String> isEmpty = String::isEmpty;
-		isEmpty.test("");
+        Predicate<String> isEmpty = String::isEmpty;
+        isEmpty.test("");
 
-		Predicate<String> isNotEmpty = isEmpty.negate();
-		isNotEmpty.test("");
+        Predicate<String> isNotEmpty = isEmpty.negate();
+        isNotEmpty.test("");
 
-		// Functions
-		Function<String, Integer> toInteger = Integer::valueOf;
-		Function<String, String> backToString = toInteger.andThen(String::valueOf);
+        // Functions
+        Function<String, Integer> toInteger = Integer::valueOf;
+        Function<String, String> backToString = toInteger.andThen(String::valueOf);
 
-		backToString.apply("123"); // "123"
+        backToString.apply("123"); // "123"
 
-		// Suppliers
+        // Suppliers
 
-		Supplier<Person> personSupplier = Person::new;
-		personSupplier.get(); // new Person
+        Supplier<Person> personSupplier = Person::new;
+        personSupplier.get(); // new Person
 
-		// Consumers
+        // Consumers
 
-		Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
-		greeter.accept(new Person("Luke", "Skywalker"));
-		
-		// Comparators
+        Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
+        greeter.accept(new Person("Luke", "Skywalker"));
 
-		Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
+        // Comparators
 
-		Person p1 = new Person("John", "Doe");
-		Person p2 = new Person("Alice", "Wonderland");
+        Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
 
-		comparator.compare(p1, p2); // > 0
-		comparator.reversed().compare(p1, p2); // < 0
+        Person p1 = new Person("John", "Doe");
+        Person p2 = new Person("Alice", "Wonderland");
 
-		// Runnables
+        comparator.compare(p1, p2); // > 0
+        comparator.reversed().compare(p1, p2); // < 0
 
-		Runnable runnable = () -> System.out.println(UUID.randomUUID());
-		runnable.run();
+        // Runnables
 
-		// Callables
+        Runnable runnable = () -> System.out.println(UUID.randomUUID());
+        runnable.run();
 
-		Callable<UUID> callable = UUID::randomUUID;
-		callable.call();
-	}
+        // Callables
+
+        Callable<UUID> callable = UUID::randomUUID;
+        callable.call();
+    }
 }

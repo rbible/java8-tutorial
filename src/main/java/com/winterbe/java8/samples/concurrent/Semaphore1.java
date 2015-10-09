@@ -12,9 +12,7 @@ import java.util.stream.IntStream;
 public class Semaphore1 {
 
     private static final int NUM_INCREMENTS = 10000;
-
     private static Semaphore semaphore = new Semaphore(1);
-
     private static int count = 0;
 
     public static void main(String[] args) {
@@ -23,12 +21,8 @@ public class Semaphore1 {
 
     private static void testIncrement() {
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
-        IntStream.range(0, NUM_INCREMENTS)
-                .forEach(i -> executor.submit(Semaphore1::increment));
-
+        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(Semaphore1::increment));
         ConcurrentUtils.stop(executor);
-
         System.out.println("Increment: " + count);
     }
 
@@ -37,15 +31,12 @@ public class Semaphore1 {
         try {
             permit = semaphore.tryAcquire(5, TimeUnit.SECONDS);
             count++;
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException("could not increment");
-        }
-        finally {
+        } finally {
             if (permit) {
                 semaphore.release();
             }
         }
     }
-
 }

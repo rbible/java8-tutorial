@@ -38,8 +38,7 @@ public final class CheckedFunctions {
         return input -> {
             try {
                 return function.apply(input);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (e instanceof RuntimeException) {
                     throw (RuntimeException) e;
                 }
@@ -59,8 +58,7 @@ public final class CheckedFunctions {
         return input -> {
             try {
                 return predicate.test(input);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (e instanceof RuntimeException) {
                     throw (RuntimeException) e;
                 }
@@ -80,8 +78,7 @@ public final class CheckedFunctions {
         return input -> {
             try {
                 consumer.accept(input);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (e instanceof RuntimeException) {
                     throw (RuntimeException) e;
                 }

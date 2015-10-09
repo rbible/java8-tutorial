@@ -10,7 +10,6 @@ import java.util.stream.IntStream;
 public class Synchronized2 {
 
     private static final int NUM_INCREMENTS = 10000;
-
     private static int count = 0;
 
     public static void main(String[] args) {
@@ -19,14 +18,9 @@ public class Synchronized2 {
 
     private static void testSyncIncrement() {
         count = 0;
-
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
-        IntStream.range(0, NUM_INCREMENTS)
-                .forEach(i -> executor.submit(Synchronized2::incrementSync));
-
+        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(Synchronized2::incrementSync));
         ConcurrentUtils.stop(executor);
-
         System.out.println(count);
     }
 
@@ -35,5 +29,4 @@ public class Synchronized2 {
             count = count + 1;
         }
     }
-
 }

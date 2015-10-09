@@ -17,20 +17,18 @@ public class Executors3 {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         test1();
-//        test2();
-//        test3();
+        // test2();
+        // test3();
 
-//        test4();
-//        test5();
+        // test4();
+        // test5();
     }
 
+    @SuppressWarnings("unused")
     private static void test5() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newWorkStealingPool();
 
-        List<Callable<String>> callables = Arrays.asList(
-                callable("task1", 2),
-                callable("task2", 1),
-                callable("task3", 3));
+        List<Callable<String>> callables = Arrays.asList(callable("task1", 2), callable("task2", 1), callable("task3", 3));
 
         String result = executor.invokeAny(callables);
         System.out.println(result);
@@ -45,29 +43,24 @@ public class Executors3 {
         };
     }
 
+    @SuppressWarnings("unused")
     private static void test4() throws InterruptedException {
         ExecutorService executor = Executors.newWorkStealingPool();
 
-        List<Callable<String>> callables = Arrays.asList(
-                () -> "task1",
-                () -> "task2",
-                () -> "task3");
+        List<Callable<String>> callables = Arrays.asList(() -> "task1", () -> "task2", () -> "task3");
 
-        executor.invokeAll(callables)
-                .stream()
-                .map(future -> {
-                    try {
-                        return future.get();
-                    }
-                    catch (Exception e) {
-                        throw new IllegalStateException(e);
-                    }
-                })
-                .forEach(System.out::println);
+        executor.invokeAll(callables).stream().map(future -> {
+            try {
+                return future.get();
+            } catch (Exception e) {
+                throw new IllegalStateException(e);
+            }
+        }).forEach(System.out::println);
 
         executor.shutdown();
     }
 
+    @SuppressWarnings("unused")
     private static void test3() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
@@ -75,8 +68,7 @@ public class Executors3 {
             try {
                 TimeUnit.SECONDS.sleep(2);
                 System.out.println("Scheduling: " + System.nanoTime());
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 System.err.println("task interrupted");
             }
         };
@@ -84,6 +76,7 @@ public class Executors3 {
         executor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.SECONDS);
     }
 
+    @SuppressWarnings("unused")
     private static void test2() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());

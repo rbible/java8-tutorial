@@ -13,8 +13,8 @@ import java.util.concurrent.TimeoutException;
 public class Executors2 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
-//        test1();
-//        test2();
+        // test1();
+        // test2();
         test3();
     }
 
@@ -25,8 +25,7 @@ public class Executors2 {
             try {
                 TimeUnit.SECONDS.sleep(2);
                 return 123;
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new IllegalStateException("task interrupted", e);
             }
         });
@@ -34,6 +33,7 @@ public class Executors2 {
         future.get(1, TimeUnit.SECONDS);
     }
 
+    @SuppressWarnings("unused")
     private static void test2() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -41,8 +41,7 @@ public class Executors2 {
             try {
                 TimeUnit.SECONDS.sleep(1);
                 return 123;
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new IllegalStateException("task interrupted", e);
             }
         });
@@ -51,6 +50,7 @@ public class Executors2 {
         future.get();
     }
 
+    @SuppressWarnings("unused")
     private static void test1() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -58,8 +58,7 @@ public class Executors2 {
             try {
                 TimeUnit.SECONDS.sleep(1);
                 return 123;
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new IllegalStateException("task interrupted", e);
             }
         });

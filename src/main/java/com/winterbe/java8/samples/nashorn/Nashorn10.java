@@ -4,6 +4,7 @@ import jdk.nashorn.api.scripting.NashornScriptEngine;
 
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,7 +12,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Nashorn10 {
 
-    public static void main(String[] args) throws ScriptException, NoSuchMethodException {
+    @SuppressWarnings("restriction")
+	public static void main(String[] args) throws ScriptException, NoSuchMethodException {
         NashornScriptEngine engine = (NashornScriptEngine) new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval("load('res/nashorn10.js')");
 

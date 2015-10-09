@@ -9,18 +9,18 @@ public class Threads1 {
 
     public static void main(String[] args) {
         test1();
-//        test2();
-//        test3();
+        // test2();
+        // test3();
     }
 
+    @SuppressWarnings("unused")
     private static void test3() {
         Runnable runnable = () -> {
             try {
                 System.out.println("Foo " + Thread.currentThread().getName());
                 TimeUnit.SECONDS.sleep(1);
                 System.out.println("Bar " + Thread.currentThread().getName());
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         };
@@ -29,14 +29,14 @@ public class Threads1 {
         thread.start();
     }
 
+    @SuppressWarnings("unused")
     private static void test2() {
         Runnable runnable = () -> {
             try {
                 System.out.println("Foo " + Thread.currentThread().getName());
                 Thread.sleep(1000);
                 System.out.println("Bar " + Thread.currentThread().getName());
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         };

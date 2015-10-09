@@ -17,28 +17,19 @@ public class String1 {
     }
 
     private static void testChars() {
-        String string = "foobar:foo:bar"
-                .chars()
-                .distinct()
-                .mapToObj(c -> String.valueOf((char) c))
-                .sorted()
+        String string = "foobar:foo:bar".chars().distinct().mapToObj(c -> String.valueOf((char) c)).sorted()
                 .collect(Collectors.joining());
         System.out.println(string);
     }
 
     private static void testPatternSplit() {
-        String string = Pattern.compile(":")
-                .splitAsStream("foobar:foo:bar")
-                .filter(s -> s.contains("bar"))
-                .sorted()
+        String string = Pattern.compile(":").splitAsStream("foobar:foo:bar").filter(s -> s.contains("bar")).sorted()
                 .collect(Collectors.joining(":"));
         System.out.println(string);
     }
 
     private static void testPatternPredicate() {
-        long count = Stream.of("bob@gmail.com", "alice@hotmail.com")
-                .filter(Pattern.compile(".*@gmail\\.com").asPredicate())
-                .count();
+        long count = Stream.of("bob@gmail.com", "alice@hotmail.com").filter(Pattern.compile(".*@gmail\\.com").asPredicate()).count();
         System.out.println(count);
     }
 
