@@ -12,5 +12,6 @@ public class CompletableFuture1 {
         CompletableFuture<String> future = new CompletableFuture<>();
         future.complete("42");
         future.thenAccept(System.out::println).thenAccept(v -> System.out.println("done"));
+        
     }
 }

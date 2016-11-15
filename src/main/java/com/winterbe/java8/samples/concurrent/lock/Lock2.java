@@ -1,8 +1,10 @@
-package com.winterbe.java8.samples.concurrent;
+package com.winterbe.java8.samples.concurrent.lock;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 
 /**
  * @author Benjamin Winterberg

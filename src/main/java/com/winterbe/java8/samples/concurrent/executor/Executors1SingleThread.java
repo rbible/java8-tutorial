@@ -1,4 +1,4 @@
-package com.winterbe.java8.samples.concurrent;
+package com.winterbe.java8.samples.concurrent.executor;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,10 +7,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Benjamin Winterberg
  */
-public class Executors1 {
+public class Executors1SingleThread {
 
     public static void main(String[] args) {
-        test1(3);
+        test1(2);
         // test1(7);
     }
 

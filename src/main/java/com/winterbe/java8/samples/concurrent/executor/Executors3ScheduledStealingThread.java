@@ -1,4 +1,4 @@
-package com.winterbe.java8.samples.concurrent;
+package com.winterbe.java8.samples.concurrent.executor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,22 +13,22 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Benjamin Winterberg
  */
-public class Executors3 {
+public class Executors3ScheduledStealingThread {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        test1();
+        // test1();
         // test2();
         // test3();
 
         // test4();
-        // test5();
+        test5();
     }
 
     @SuppressWarnings("unused")
     private static void test5() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newWorkStealingPool();
 
-        List<Callable<String>> callables = Arrays.asList(callable("task1", 2), callable("task2", 1), callable("task3", 3));
+        List<Callable<String>> callables = Arrays.asList(callable("task1", 2), callable("task2", 4), callable("task3", 3));
 
         String result = executor.invokeAny(callables);
         System.out.println(result);

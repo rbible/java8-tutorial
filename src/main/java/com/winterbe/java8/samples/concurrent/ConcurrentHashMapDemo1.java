@@ -23,8 +23,7 @@ public class ConcurrentHashMapDemo1 {
         map.putIfAbsent("r2", "d2");
         map.putIfAbsent("c3", "p0");
 
-        String reduced = map.reduce(1, (key, value) -> key + "=" + value,
-                (s1, s2) -> s1 + ", " + s2);
+        String reduced = map.reduce(1, (key, value) -> key + "=" + value, (s1, s2) -> s1 + ", " + s2);
 
         System.out.println(reduced);
     }
@@ -68,8 +67,10 @@ public class ConcurrentHashMapDemo1 {
         map.putIfAbsent("r2", "d2");
         map.putIfAbsent("c3", "p0");
 
-        map.forEach(1, (key, value) -> System.out.printf("key: %s; value: %s; thread: %s\n", key, value, Thread.currentThread().getName()));
-//        map.forEach(5, (key, value) -> System.out.printf("key: %s; value: %s; thread: %s\n", key, value, Thread.currentThread().getName()));
+        map.forEach(1,
+                (key, value) -> System.out.printf("key: %s; value: %s; thread: %s\n", key, value, Thread.currentThread().getName()));
+        // map.forEach(5, (key, value) -> System.out.printf("key: %s; value: %s; thread: %s\n", key,
+        // value, Thread.currentThread().getName()));
 
         System.out.println(map.mappingCount());
     }

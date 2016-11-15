@@ -35,7 +35,7 @@ public class AtomicIntegerDemo {
         atomicInt.set(0);
         ExecutorService executor = Executors.newFixedThreadPool(2);
         IntStream.range(0, NUM_INCREMENTS).forEach(i -> {
-            Runnable task = () -> atomicInt.accumulateAndGet(i, (n, m) -> n + m);
+            Runnable task = () -> atomicInt.accumulateAndGet(i, (n, m) -> n + m); 
             executor.submit(task);
         });
         ConcurrentUtils.stop(executor);

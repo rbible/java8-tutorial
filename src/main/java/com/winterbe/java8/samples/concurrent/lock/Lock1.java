@@ -1,9 +1,11 @@
-package com.winterbe.java8.samples.concurrent;
+package com.winterbe.java8.samples.concurrent.lock;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.IntStream;
+
+import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 
 /**
  * @author Benjamin Winterberg
@@ -11,11 +13,13 @@ import java.util.stream.IntStream;
 public class Lock1 {
 
     private static final int NUM_INCREMENTS = 10000;
-
     private static ReentrantLock lock = new ReentrantLock();
-
     private static int count = 0;
 
+    public static void main(String[] args) {
+        testLock();
+    } 
+    
     private static void increment() {
         lock.lock();
         try {
@@ -25,19 +29,11 @@ public class Lock1 {
         }
     }
 
-    public static void main(String[] args) {
-        testLock();
-    }
-
     private static void testLock() {
         count = 0;
-
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
         IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(Lock1::increment));
-
         ConcurrentUtils.stop(executor);
-
         System.out.println(count);
     }
 

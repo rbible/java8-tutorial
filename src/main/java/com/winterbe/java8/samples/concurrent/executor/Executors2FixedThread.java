@@ -1,4 +1,4 @@
-package com.winterbe.java8.samples.concurrent;
+package com.winterbe.java8.samples.concurrent.executor;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -10,11 +10,12 @@ import java.util.concurrent.TimeoutException;
 /**
  * @author Benjamin Winterberg
  */
-public class Executors2 {
+@SuppressWarnings("unused")
+public class Executors2FixedThread {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
-        // test1();
-        // test2();
+         test1();
+//         test2();
         test3();
     }
 
@@ -23,17 +24,17 @@ public class Executors2 {
 
         Future<Integer> future = executor.submit(() -> {
             try {
-                TimeUnit.SECONDS.sleep(2);
+                TimeUnit.SECONDS.sleep(1);
                 return 123;
             } catch (InterruptedException e) {
                 throw new IllegalStateException("task interrupted", e);
             }
         });
 
-        future.get(1, TimeUnit.SECONDS);
+        Integer integer = future.get(2, TimeUnit.SECONDS);
+        System.out.println("test 3 result : " + integer);
     }
 
-    @SuppressWarnings("unused")
     private static void test2() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -47,10 +48,10 @@ public class Executors2 {
         });
 
         executor.shutdownNow();
-        future.get();
+        Integer integer = future.get();
+        System.out.println("test2 result : " + integer);
     }
 
-    @SuppressWarnings("unused")
     private static void test1() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
@@ -64,11 +65,9 @@ public class Executors2 {
         });
 
         System.out.println("future done: " + future.isDone());
-
         Integer result = future.get();
-
         System.out.println("future done: " + future.isDone());
-        System.out.print("result: " + result);
+        System.out.println("test1 result: " + result);
 
         executor.shutdownNow();
     }
