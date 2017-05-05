@@ -9,7 +9,7 @@ import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 /**
  * @author Benjamin Winterberg
  */
-public class Lock6 {
+public class ConvertToWriteLockDemo {
 
     private static int count = 0;
 

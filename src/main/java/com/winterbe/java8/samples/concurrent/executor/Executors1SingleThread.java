@@ -6,11 +6,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Benjamin Winterberg
+ * @Message support termination when thread running
  */
 public class Executors1SingleThread {
 
     public static void main(String[] args) {
-        test1(2);
+        test1(10);
         // test1(7);
     }
 

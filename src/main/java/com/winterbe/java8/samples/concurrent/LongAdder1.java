@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  */
 public class LongAdder1 {
 
-    private static final int NUM_INCREMENTS = 10000;
+    private static final int NUM_INCREMENTS = 3;
     private static LongAdder adder = new LongAdder();
 
     public static void main(String[] args) {

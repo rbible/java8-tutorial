@@ -11,28 +11,30 @@ import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 /**
  * @author Benjamin Winterberg
  */
-public class Semaphore2 {
+public class SemaphoreDemo {
 
-    private static Semaphore semaphore = new Semaphore(5);
+    private static final int NUM_INCREMENTS = 10000;
+    private static Semaphore semaphore = new Semaphore(1);
+    private static int count = 0;
 
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(10);
-        IntStream.range(0, 10).forEach(i -> executor.submit(Semaphore2::doWork));
-        ConcurrentUtils.stop(executor);
+        testIncrement();
     }
 
-    private static void doWork() {
+    private static void testIncrement() {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(SemaphoreDemo::increment));
+        ConcurrentUtils.stop(executor);
+        System.out.println("Increment: " + count);
+    }
+
+    private static void increment() {
         boolean permit = false;
         try {
-            permit = semaphore.tryAcquire(1, TimeUnit.SECONDS);
-            if (permit) {
-                System.out.println("Semaphore acquired");
-                ConcurrentUtils.sleep(5);
-            } else {
-                System.out.println("Could not acquire semaphore");
-            }
+            permit = semaphore.tryAcquire(5, TimeUnit.SECONDS);
+            count++;
         } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
+            throw new RuntimeException("could not increment");
         } finally {
             if (permit) {
                 semaphore.release();

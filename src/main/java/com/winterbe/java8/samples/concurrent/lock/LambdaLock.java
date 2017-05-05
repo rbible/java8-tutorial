@@ -9,7 +9,7 @@ import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 /**
  * @author Benjamin Winterberg
  */
-public class Lock2 {
+public class LambdaLock {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(2);

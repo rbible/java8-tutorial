@@ -10,7 +10,7 @@ import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 /**
  * @author Benjamin Winterberg
  */
-public class Lock1 {
+public class ReentrantLockDemo {
 
     private static final int NUM_INCREMENTS = 10000;
     private static ReentrantLock lock = new ReentrantLock();
@@ -32,7 +32,7 @@ public class Lock1 {
     private static void testLock() {
         count = 0;
         ExecutorService executor = Executors.newFixedThreadPool(2);
-        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(Lock1::increment));
+        IntStream.range(0, NUM_INCREMENTS).forEach(i -> executor.submit(ReentrantLockDemo::increment));
         ConcurrentUtils.stop(executor);
         System.out.println(count);
     }

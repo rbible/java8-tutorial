@@ -13,6 +13,7 @@ public class Concurrency1 {
         for (int i = 0; i < 100; i++) {
             concurrentHashMap.put(i, UUID.randomUUID());
         }
+
         int threshold = 1;
         concurrentHashMap.forEachValue(threshold, System.out::println);
         concurrentHashMap.forEach((id, uuid) -> {
@@ -20,6 +21,7 @@ public class Concurrency1 {
                 System.out.println(String.format("%s: %s", id, uuid));
             }
         });
+
         UUID searchResult = concurrentHashMap.search(threshold, (id, uuid) -> {
             if (String.valueOf(uuid).startsWith(String.valueOf(id))) {
                 return uuid;

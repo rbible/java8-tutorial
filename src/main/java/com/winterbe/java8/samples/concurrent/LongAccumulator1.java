@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 /**
  * @author Benjamin Winterberg
+ * @Message 累加计算
  */
 public class LongAccumulator1 {
 
@@ -19,7 +20,7 @@ public class LongAccumulator1 {
         LongBinaryOperator op = (x, y) -> 2 * x + y;
         LongAccumulator accumulator = new LongAccumulator(op, 1L);
         ExecutorService executor = Executors.newFixedThreadPool(2);
-        IntStream.range(0, 10).forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
+        IntStream.range(0, 3).forEach(i -> executor.submit(() -> accumulator.accumulate(i)));
         ConcurrentUtils.stop(executor);
         System.out.format("Add: %d\n", accumulator.getThenReset());
     }

@@ -9,7 +9,7 @@ import com.winterbe.java8.samples.concurrent.ConcurrentUtils;
 /**
  * @author Benjamin Winterberg
  */
-public class Lock5 {
+public class OptimisticLockDemo {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -21,7 +21,7 @@ public class Lock5 {
                 System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
                 ConcurrentUtils.sleep(1);
                 System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
-                ConcurrentUtils.sleep(2);
+                ConcurrentUtils.sleep(4);
                 System.out.println("Optimistic Lock Valid: " + lock.validate(stamp));
             } finally {
                 lock.unlock(stamp);

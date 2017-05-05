@@ -12,23 +12,26 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Benjamin Winterberg
+ * @Message stealing
  */
 public class Executors3ScheduledStealingThread {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        // test1();
+         test1();
         // test2();
-        // test3();
-
-        // test4();
-        test5();
+//        test3();
+//         test4();
+//        test5();
     }
 
+    /**
+     * @Message 自动判断执行任何一个thread
+     */
     @SuppressWarnings("unused")
     private static void test5() throws InterruptedException, ExecutionException {
         ExecutorService executor = Executors.newWorkStealingPool();
 
-        List<Callable<String>> callables = Arrays.asList(callable("task1", 2), callable("task2", 4), callable("task3", 3));
+        List<Callable<String>> callables = Arrays.asList(callable("task1", 9), callable("task2", 4), callable("task3", 3));
 
         String result = executor.invokeAny(callables);
         System.out.println(result);
@@ -43,6 +46,10 @@ public class Executors3ScheduledStealingThread {
         };
     }
 
+    /**
+     * @Message 逐个执行 thread
+     * @throws InterruptedException
+     */
     @SuppressWarnings("unused")
     private static void test4() throws InterruptedException {
         ExecutorService executor = Executors.newWorkStealingPool();
@@ -60,6 +67,9 @@ public class Executors3ScheduledStealingThread {
         executor.shutdown();
     }
 
+    /**
+     * @Menssage 周期执行task
+     */
     @SuppressWarnings("unused")
     private static void test3() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -67,15 +77,18 @@ public class Executors3ScheduledStealingThread {
         Runnable task = () -> {
             try {
                 TimeUnit.SECONDS.sleep(2);
-                System.out.println("Scheduling: " + System.nanoTime());
+                System.out.println("Scheduling: " + System.nanoTime() + "," + System.currentTimeMillis());
             } catch (InterruptedException e) {
                 System.err.println("task interrupted");
             }
         };
 
-        executor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.SECONDS);
+        executor.scheduleWithFixedDelay(task, 0, 10, TimeUnit.SECONDS);
     }
 
+    /**
+     * delay and period
+     */
     @SuppressWarnings("unused")
     private static void test2() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -85,12 +98,16 @@ public class Executors3ScheduledStealingThread {
         executor.scheduleAtFixedRate(task, initialDelay, period, TimeUnit.SECONDS);
     }
 
+    /**
+     * @Message delay
+     * @throws InterruptedException
+     */
     private static void test1() throws InterruptedException {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
         Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());
         int delay = 3;
-        ScheduledFuture<?> future = executor.schedule(task, delay, TimeUnit.SECONDS);
+        ScheduledFuture<?> future = executor.schedule(task, 3, TimeUnit.SECONDS);
 
         TimeUnit.MILLISECONDS.sleep(1337);
 

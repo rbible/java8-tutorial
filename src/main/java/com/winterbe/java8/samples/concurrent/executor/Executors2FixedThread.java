@@ -9,12 +9,13 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @author Benjamin Winterberg
+ * @Message future
  */
 @SuppressWarnings("unused")
 public class Executors2FixedThread {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
-         test1();
+        test1();
 //         test2();
         test3();
     }
@@ -71,5 +72,4 @@ public class Executors2FixedThread {
 
         executor.shutdownNow();
     }
-
 }

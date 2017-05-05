@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class Threads1 {
 
     public static void main(String[] args) {
-        test1();
-        // test2();
-        // test3();
+//        test1();
+//         test2();
+         test3();
     }
 
     @SuppressWarnings("unused")
