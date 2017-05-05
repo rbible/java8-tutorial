@@ -2,12 +2,13 @@ package com.winterbe.java8.samples.lambda;
 
 /**
  * @author Benjamin Winterberg
+ * @Message 1、内部FunctionInterface用法，实现与调用分离；2、lamdba内部可以操作类成员变量
  */
 public class InnerFunctionInterface {
 
-    static int outerStaticNum;
+    private static int outerStaticNum;
 
-    int outerNum;
+    private int outerNum;
 
     void testScopes() {
         int num = 1;

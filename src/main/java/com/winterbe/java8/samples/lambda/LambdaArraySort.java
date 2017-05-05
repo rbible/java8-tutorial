@@ -9,40 +9,62 @@ import java.util.Optional;
 /**
  * @author Benjamin Winterberg
  */
-public class ArraysLambda {
+public class LambdaArraySort {
 
     public static void main(String[] args) {
         List<String> names = Arrays.asList("peter", "anna", "mike", "xenia");
+        lambda4Sort(names, Collections.reverseOrder());
+        System.out.println(names);
+
 
         usualSort(names);
+        System.out.println(names);
         lambda1Sort(names);
+        System.out.println(names);
         lambda2Sort(names);
+        System.out.println(names);
         lambda3Sort(names);
         System.out.println(names);
 
-        names.sort(Collections.reverseOrder());
-        System.out.println(names);
 
         List<String> names2 = Arrays.asList("peter", null, "anna", "mike", "xenia");
-        names2.sort(Comparator.nullsLast(String::compareTo));
+        lambda4Sort(names2, Comparator.nullsLast(String::compareTo));
         System.out.println(names2);
 
-        List<String> names3 = null;
-        Optional.ofNullable(names3).ifPresent(list -> list.sort(Comparator.naturalOrder()));
+
+        List<String> names3 = Arrays.asList("2", "1");
+        lambda5Sort(names3);
         System.out.println(names3);
     }
 
-    private static void lambda3Sort(List<String> names) {
-        Collections.sort(names, (a, b) -> b.compareTo(a));
+    private static void lambda5Sort(List<String> names3) {
+        Optional.ofNullable(names3).ifPresent(list -> list.sort(Comparator.naturalOrder()));
     }
 
+    private static void lambda4Sort(List<String> names2, Comparator<String> c) {
+        names2.sort(c);
+    }
+
+    /**
+     * simple
+     */
+    private static void lambda3Sort(List<String> names) {
+        Collections.sort(names, (a, b) -> a.compareTo(b));
+    }
+
+    /**
+     * parameter type
+     */
     private static void lambda2Sort(List<String> names) {
         Collections.sort(names, (String a, String b) -> b.compareTo(a));
     }
 
+    /**
+     * method body
+     */
     private static void lambda1Sort(List<String> names) {
         Collections.sort(names, (String a, String b) -> {
-            return b.compareTo(a);
+            return a.compareTo(b);
         });
     }
 

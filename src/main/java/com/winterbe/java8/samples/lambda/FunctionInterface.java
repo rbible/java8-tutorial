@@ -2,6 +2,7 @@ package com.winterbe.java8.samples.lambda;
 
 /**
  * @author Benjamin Winterberg
+ * @Message 可用于实现逻辑与调用的分离，在一处对functionInterface进行定义，在另一处抽象调用
  */
 public class FunctionInterface {
 

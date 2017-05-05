@@ -2,6 +2,7 @@ package com.winterbe.java8.samples.lambda;
 
 /**
  * @author Benjamin Winterberg
+ * @Message interface default define；static define
  */
 public class InterfaceUsage {
 
