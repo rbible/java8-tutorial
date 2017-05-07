@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 /**
  * Examples how to avoid null checks with Optional:
- *
  * http://winterbe.com/posts/2015/03/15/avoid-null-checks-in-java/
  *
  * @author Benjamin Winterberg
@@ -46,24 +45,20 @@ public class Optional2 {
         try {
             T result = resolver.get();
             return Optional.ofNullable(result);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             return Optional.empty();
         }
     }
 
     private static void test3() {
         Outer outer = new Outer();
-        resolve(() -> outer.getNested().getInner().getFoo())
-                .ifPresent(System.out::println);
+        resolve(() -> outer.getNested().getInner().getFoo()).ifPresent(System.out::println);
     }
 
     private static void test2() {
         Optional.of(new Outer())
-                .map(Outer::getNested)
-                .map(Nested::getInner)
-                .map(Inner::getFoo)
-                .ifPresent(System.out::println);
+                .map(Outer::getNested).map(Nested::getInner)
+                .map(Inner::getFoo).ifPresent(System.out::println);
     }
 
     private static void test1() {
