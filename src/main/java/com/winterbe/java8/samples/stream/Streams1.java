@@ -23,7 +23,7 @@ public class Streams1 {
 
 
         // filtering
-
+        System.out.println("\ncollection.stream.sorted.filter.foreach");
         stringCollection
                 .stream()
                 .filter((s) -> s.startsWith("a"))
@@ -33,7 +33,7 @@ public class Streams1 {
 
 
         // sorting
-
+        System.out.println("\ncollection.stream.sorted.filter.foreach");
         stringCollection
                 .stream()
                 .sorted()
@@ -42,9 +42,8 @@ public class Streams1 {
 
         // "aaa1", "aaa2"
 
-
+        System.out.println("\ncollection.stream.map.sorted.foreach");
         // mapping
-
         stringCollection
                 .stream()
                 .map(String::toUpperCase)
@@ -96,7 +95,5 @@ public class Streams1 {
         reduced.ifPresent(System.out::println);
         // "aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2"
 
-
     }
-
 }

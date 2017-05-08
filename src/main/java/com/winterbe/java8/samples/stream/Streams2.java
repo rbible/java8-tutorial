@@ -20,17 +20,13 @@ public class Streams2 {
         stringCollection.add("bbb2");
         stringCollection.add("ddd1");
 
-
         // sorting
-
         stringCollection
                 .stream()
                 .sorted()
                 .forEach(System.out::println);
 
         System.out.println(stringCollection);
-
-        
 
     }
 
